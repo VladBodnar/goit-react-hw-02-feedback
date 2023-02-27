@@ -1,44 +1,28 @@
 import React from 'react';
-import SectionTitle from "./SectionTitle"
-//  import Statistics from './Statistics';
-//  import FeedbackOptions from './FeedbackOptions';
-// import Reviews from "./Reviews";
+import SectionTitle from './SectionTitle';
 class App extends React.Component {
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
   };
-
-  handelClickGood = () => {
+  handelClick = event => {
+    const { name } = event.currentTarget;
+    console.log(name);
     this.setState(prevState => {
       return {
-        good: prevState.good + 1,
+        [name]: prevState[name] + 1,
       };
     });
-  };
-  handelClickNeutral = () => {
-    this.setState(prevState => {
-      return {
-        neutral: prevState.neutral + 1,
-      };
-    });
-  };
-
-  handelClickBad = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
-    }));
   };
 
   render() {
     return (
-        <SectionTitle
-        state = {this.state}
-         onHandelClickGood = {this.handelClickGood}
-          onHandelClickNeutral = {this.handelClickNeutral}
-           onHandelClickBad = {this.handelClickBad}
-        />
-        )}}
+      <div>
+        <SectionTitle state={this.state} handelClick={this.handelClick} />
+      </div>
+    );
+  }
+}
 
 export default App;
